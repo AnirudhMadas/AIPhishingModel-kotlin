@@ -44,6 +44,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.resultText
             )
 
+
+
+        if (!android.provider.Settings.canDrawOverlays(this)) {
+
+            val intent = Intent(
+                android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION
+            )
+
+            startActivity(intent)
+        }
+
         // Disable initially
         analyzeButton.isEnabled = false
 
