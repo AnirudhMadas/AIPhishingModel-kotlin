@@ -101,19 +101,16 @@ class NotificationService : NotificationListenerService() {
                 )?.toString() ?: ""
 
             val text =
-                extras.getCharSequence(
-                    Notification.EXTRA_TEXT
-                )?.toString() ?: ""
+                notification.extras.getCharSequence(Notification.EXTRA_TEXT)?.toString() ?: ""
 
             val bigText =
-                extras.getCharSequence(
-                    Notification.EXTRA_BIG_TEXT
-                )?.toString() ?: ""
+                notification.extras.getCharSequence(Notification.EXTRA_BIG_TEXT)?.toString() ?: ""
 
             val summaryText =
-                extras.getCharSequence(
-                    Notification.EXTRA_SUMMARY_TEXT
-                )?.toString() ?: ""
+                if (bigText.isNotEmpty() && bigText != text)
+                    "$text $bigText"
+                else
+                    text
 
             // =========================
             // EXTRACT BEST MESSAGE
